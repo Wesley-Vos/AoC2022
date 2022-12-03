@@ -43,9 +43,14 @@ class Day3():
                 if (cnt % 3) == 0:
                     group = rucksack
 
-                group = [g and r for g, r in zip(group, rucksack)]
                 if (cnt % 3) == 2:
-                    sum_val += [i for i, x in enumerate(group) if x][0]
+                    for i, x in enumerate(group):
+                        if x and rucksack[i]:
+                            sum_val += i
+                            break
+                else:
+                    group = [g and r for g, r in zip(group, rucksack)]
+
                 cnt += 1
         return sum_val
 
