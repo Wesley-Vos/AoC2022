@@ -1,23 +1,21 @@
 from sortedcontainers import SortedList
 
-class SpecialList:
+
+class SpecialList(SortedList):
     def __init__(self, size):
+        super().__init__()
         self.size = size
-        self._list = SortedList()
 
     def add(self, val):
-       if len(self._list) == self.size:
-         if val > self._list[0]:
-           self._list.pop(0)
-         else: 
-           return
-       self._list.add(val)
+        if super().__len__() == self.size:
+            if val > super().__getitem__(0):
+                super().pop(0)
+            else:
+                return
+        super().add(val)
 
-    def __getitem__(self, index):
-      return self._list[index]
-         
 
-class Day1():
+class Day1:
     def __init__(self):
         self.elves_inventory_sums = SpecialList(3)
         elf_inventory_sum = 0
@@ -28,7 +26,7 @@ class Day1():
                     self.elves_inventory_sums.add(elf_inventory_sum)
                     elf_inventory_sum = 0
                 else:
-                   elf_inventory_sum += int(line)
+                    elf_inventory_sum += int(line)
 
     def solve_part1(self):
         return self.elves_inventory_sums[-1]
@@ -41,6 +39,7 @@ def main():
     day1 = Day1()
     print(day1.solve_part1())
     print(day1.solve_part2())
+
 
 if __name__ == "__main__":
     main()
