@@ -1,7 +1,9 @@
+from abc import ABC
+
 from sortedcontainers import SortedList
 
 
-class SpecialList(SortedList):
+class SpecialList(SortedList, ABC):
     def __init__(self, size):
         super().__init__()
         self.size = size
